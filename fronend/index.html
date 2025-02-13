@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Janitri Health Monitor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Janitri Health Monitor</h1>
+
+    <!-- User Registration & Login Section -->
+    <div id="authSection">
+        <h2>Register User</h2>
+        <form id="registerForm" onsubmit="registerUser(event)">
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required minlength="6">
+            <input type="text" id="name" placeholder="Name" required>
+            <button type="submit">Register</button>
+        </form>
+        <p id="registerMsg"></p>
+
+        <h2>Login</h2>
+        <form id="loginForm" onsubmit="loginUser(event)">
+            <input type="email" id="loginEmail" placeholder="Email" required>
+            <input type="password" id="loginPassword" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <p id="loginMsg"></p>
+    </div>
+
+    <!-- Main App Section -->
+    <div id="mainApp" style="display: none;">
+        <button onclick="logout()" class="logout-btn">Logout</button>
+        
+        <h2>Add Patient</h2>
+        <form id="patientForm" onsubmit="addPatient(event)">
+            <input type="text" id="patientName" placeholder="Patient Name" required>
+            <input type="number" id="patientAge" placeholder="Age" required min="0" max="150">
+            <button type="submit">Add Patient</button>
+        </form>
+        <p id="patientMsg"></p>
+
+        <h2>View Patients</h2>
+        <button onclick="fetchPatients()">Get Patients</button>
+        <ul id="patientsList"></ul>
+
+        <h2>Add Heart Rate</h2>
+        <form id="heartRateForm" onsubmit="addHeartRate(event)">
+            <select id="patientId" required>
+                <option value="">Select Patient</option>
+            </select>
+            <input type="number" id="bpm" placeholder="Heart Rate (BPM)" required min="30" max="250">
+            <input type="datetime-local" id="timestamp" required>
+            <button type="submit">Add Heart Rate</button>
+        </form>
+        <p id="heartRateMsg"></p>
+
+        <h2>View Heart Rate Records</h2>
+        <select id="fetchPatientId" onchange="fetchHeartRates()">
+            <option value="">Select Patient</option>
+        </select>
+        <div id="heartRateList"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
